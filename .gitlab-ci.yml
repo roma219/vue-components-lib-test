@@ -1,15 +1,66 @@
-image: node
+include:
+  - project: 'pub/ci'
+    ref: '0.0.5'
+    file: '/.common.gitlab-ci.yml' # Common pipiline
 
-publish:
+variables:
+# свой namespace, по умолчанию берется $CI_PROJECT_NAMESPACE
+  K8S_NAMESPACE: bx
+# если не указать будет использоваться $CI_PROJECT_PATH_SLUG (формат group-subgroup-project, например cas-roles)
+  SERVICE_NAME: ui-kit
+# проект в JIRA в котором будут заводится релизы
+  JIRA_PROJ: BXFE
+# префикс для релиза в jira
+  JIRA_VERSION_PREFIX: ui-kit/
+# путь до файлов values
+  HELM_VALUES_FOLDER: .o3/k8s
+# расположение файла для сборки docker образа
+  DOCKERFILE_PATH: .o3/deploy/Dockerfile
+
+.disable: &disable
+  stage: close
+  script: echo 1
+  only:
+    - /^#$/
+  except: []
+
+create release:
+  <<: *disable
+merge master:
+  <<: *disable
+release image:
+  <<: *disable
+staging latest:
+  <<: *disable
+development switch:
+  <<: *disable
+staging latest switch:
+  <<: *disable
+def route stg clean:
+  <<: *disable
+delete merged branches:
+  <<: *disable
+staging clean latest:
+  <<: *disable
+development:
+  <<: *disable
+clean development:
+  <<: *disable
+
+build:
+  image: gitlab-registry.ozon.ru/deploy/images/frontend-build:latest
+  stage: build
   script:
-    - echo "//nexus.s.o3.ru/repository/npm-private/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc
-    - npm version $MAJOR_VERSION.$MINOR_VERSION.$CI_PIPELINE_IID --no-git-tag-version
     - npm install
     - npm run build:lib
+    - echo "//nexus.s.o3.ru/repository/npm-private/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc
     - npm publish
-  only:
-    refs:
-      - master
-  variables:
-    MAJOR_VERSION: 1
-    MINOR_VERSION: 0
+
+create image:
+  dependencies:
+    - build
+
+deploy:
+  extends: .staging_deploy
+  when: on_success
+

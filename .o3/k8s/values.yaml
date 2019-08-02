@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+
+# service description data
+o3:
+  metadata:
+    # service description  (en)
+    description: SF Admin UI Kit
+    # severity level
+    severityLevel: LOW
+    # business owner name (en)
+    businessOwnerName: Konstantin Cherkasov
+    # business owner email
+    businessOwnerEmail: kcherkasov@ozon.ru
+    # technical owner name (en)
+    technicalOwnerName: Roman Sabirov
+    # technical owner email
+    technicalOwnerEmail: rsabirov@ozon.ru
+    # project slack chanel name
+    slackChan: storefront
+    # project confluence url
+    confluenceUrl: https://confluence.ozon.ru/display/BXFE/UI+kit
+    # jira board url
+    jiraBoardUrl: https://jit.ozon.ru/projects/BXFE/summary
