@@ -4,6 +4,7 @@ publish:
   script:
     - echo "//nexus.s.o3.ru/repository/npm-private/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc
     - npm version $MAJOR_VERSION.$MINOR_VERSION.$CI_PIPELINE_IID --no-git-tag-version
+    - npm install
     - npm run build:lib
     - npm publish
   only:
