@@ -1,2 +1,3 @@
 import Loader from './Loader'
-export default { Loader }
+import Textarea from './Textarea'
+export default { Loader, Textarea }
