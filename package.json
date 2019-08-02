@@ -1,6 +1,6 @@
 {
-  "name": "@ozon-bx/sf-ui-kit",
-  "version": "0.0.2",
+  "name": "@ozon-bx/ui-components",
+  "version": "0.0.1",
   "description": "StoreFront UI Kit",
   "author": "Roman Sabirov rsabirov@ozon.ru",
   "scripts": {
