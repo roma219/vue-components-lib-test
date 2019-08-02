@@ -42,5 +42,9 @@
     "public/*",
     "*.json",
     "*.js"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.ozon.ru/storefront/ui-components"
+  }
 }
