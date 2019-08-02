@@ -1,20 +1,23 @@
 {
-  "name": "vue-components-lib",
-  "version": "0.1.0",
+  "name": "@ozon-bx/sf-ui-kit",
+  "version": "0.0.2",
   "private": true,
+  "description": "StoreFront UI Kit",
+  "author": "Roman Sabirov rsabirov@ozon.ru",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:lib": "vue-cli-service build --target lib --name myLib src/components/index.ts",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
-  "dependencies": {
+  "main": "./dist/myLib.common.js",
+  "dependencies": {},
+  "devDependencies": {
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
-    "vue-property-decorator": "^8.1.0"
-  },
-  "devDependencies": {
+    "vue-property-decorator": "^8.1.0",
     "@types/jest": "^23.1.4",
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-plugin-eslint": "^3.9.0",
@@ -33,5 +36,12 @@
     "ts-jest": "^23.0.0",
     "typescript": "^3.4.3",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ]
 }
