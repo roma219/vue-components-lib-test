@@ -1,0 +1,27 @@
+$uikit_primary-color: #0083ca;
+$uikit_text-color: #333;
+$uikit_border-color: #ddd;
+$uikit_accent-color: #f29900;
+$uikit_input-bg-color: #f5f5f5;
+
+@mixin uikit_text {
+  font-size: 14px;
+}
+
+@mixin uikit_title {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: -.6px;
+  line-height: 1.33;
+}
+
+@mixin uikit_subtitle {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -.6px;
+  line-height: 1.4;
+}
+
+:export {
+  var-primary-color: $uikit_primary-color;
+}
